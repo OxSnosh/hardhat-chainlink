@@ -18,7 +18,7 @@ export const deployOracle: ActionType<{
   await oracle.deployed();
 
   // Set Fulfillment on Oracle
-  await oracle.setAutorizedSenders([nodeAddress])
+  await oracle.connect(deployer).setAutorizedSenders([nodeAddress])
 
   console.log(
     "All set on this end! If you've setup everything correctly, you can start getting external data from your smart contract"
