@@ -4,32 +4,40 @@ export const fundEth: ActionType<{
   nodeAddress: string;
   amount: string;
 }> = async (taskArgs, hre, runSuper) => {
-  const { nodeAddress, amount } = taskArgs;
-  const { ethers } = hre;
+    const { nodeAddress, amount } = taskArgs
+    const { ethers } = hre
+    
+    const fundAmount = hre.ethers.utils.parseEther(amount ?? '10')
+    
+    const provider = new ethers.providers.JsonRpcProvider(
+        'http://127.0.0.1:8545'
+    )
+    const signer = provider.getSigner(0)
+    
+    const { getUnnamedAccounts } = require('hardhat')
+    const signers = await getUnnamedAccounts()
+    console.log(signers, "SIGNERS")
+    const signer0 = signers[0]
+    console.log(signer, "SIGNER")
+    
+    
+    // const wallet = new ethers.Wallet(
+        //     signers[0], // Hardhat wallet are deterministic and the same across al hardhat users
+        //     provider
+        // )
+        
+    console.log('Node Address: ', nodeAddress)
+    await signer.sendTransaction({
+        to: nodeAddress,
+        value: fundAmount
+    })
+        
+    const balance = await provider.getBalance(nodeAddress)
+    const balanceToETH = hre.ethers.utils.formatEther(balance)
 
-  const fundAmount = hre.ethers.utils.parseEther(amount ?? "10");
-
-  const provider = new ethers.providers.JsonRpcProvider(
-    "http://127.0.0.1:8545"
-  );
-
-  const wallet = new ethers.Wallet(
-    "ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80", // Hardhat wallet are deterministic and the same across al hardhat users
-    provider
-  );
-
-  console.log("Node Address: ", nodeAddress);
-  await wallet.sendTransaction({
-    to: nodeAddress,
-    value: fundAmount,
-  });
-
-  const balance = await provider.getBalance(nodeAddress);
-  const balanceToETH = hre.ethers.utils.formatEther(balance);
-
-  console.log(
-    `Success! Funded ${nodeAddress} with ${amount} ETH. New Node Balance: ${balanceToETH}`
-  );
+    console.log(
+        `Success! Funded ${nodeAddress} with ${amount} ETH. New Node Balance: ${balanceToETH}`
+    )
 };
 
 export const fundLink: ActionType<{
