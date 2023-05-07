@@ -1,0 +1,1 @@
+{"version":3,"file":"create-subscription.d.ts","sourceRoot":"","sources":["../../../../src/tasks/functions/create-subscription.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,eAAe,CAAC;AAK3C,eAAO,MAAM,wBAAwB,EAAE,UAAU,CAAC;IAChD,eAAe,EAAE,MAAM,CAAC;IACxB,qBAAqB,EAAE,MAAM,CAAC;IAC9B,UAAU,EAAE,MAAM,CAAC;CACpB,CA4DA,CAAC"}

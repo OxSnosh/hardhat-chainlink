@@ -1,0 +1,1 @@
+{"version":3,"file":"simulate-request.d.ts","sourceRoot":"","sources":["../../../../src/tasks/functions/simulate-request.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,UAAU,EAA6B,MAAM,eAAe,CAAC;AAqBtE,eAAO,MAAM,qBAAqB,EAAE,UAAU,CAAC;IAC7C,kBAAkB,EAAE,MAAM,CAAC;IAC3B,QAAQ,EAAE,MAAM,CAAC;CAClB,CAiMA,CAAC"}
